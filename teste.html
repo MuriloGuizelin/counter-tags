@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contador de Tags HTML</title>
+</head>
+<body>
+    <h1>Contador de Tags HTML</h1>
+    <form id="urlForm">
+        <label for="urls">Digite as URLs separadas por vírgula:</label>
+        <input type="text" id="urls" name="urls" required>
+        <button type="submit">Contar Tags</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const urlInput = document.getElementById('urls');
+            const urls = urlInput.value;
+
+            fetch('/countTags?urls=' + encodeURIComponent(urls))
+                .then(response => response.json())
+                .then(data => showResult(data));
+        });
+
+        function showResult(result) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            for (const url in result) {
+                const tagCountMap = result[url];
+                const urlHeading = document.createElement('h2');
+                urlHeading.textContent = url;
+                resultDiv.appendChild(urlHeading);
+
+                const tagList = document.createElement('ul');
+                for (const tagName in tagCountMap) {
+                    const tagItem = document.createElement('li');
+                    tagItem.textContent = tagName + ': ' + tagCountMap[tagName];
+                    tagList.appendChild(tagItem);
+                }
+
+                resultDiv.appendChild(tagList);
+            }
+        }
+    </script>
+</body>
+</html>
