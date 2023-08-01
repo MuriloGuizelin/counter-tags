@@ -1,0 +1,40 @@
+<!-- results.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultados da Contagem de Tags HTML</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <h1>Resultados da Contagem de Tags HTML</h1>
+    <div class="results-container">
+        <div class="results" th:each="result : ${results}">
+            <h2 class="url"> <span id="formattedUrl" th:text="${result.url}"></span></h2>
+            <table class="small-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tagCount : ${result.tagCountMap}">
+                        <td th:text="${tagCount.key}"></td>
+                        <td th:text="${tagCount.value}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Remove o "https://www." da URL antes de exibir
+        const formattedUrlElements = document.querySelectorAll(".url #formattedUrl");
+        formattedUrlElements.forEach((element) => {
+            const url = element.textContent;
+            const formattedUrl = url.replace(/^https?:\/\/(www\.)?/, "");
+            element.textContent = formattedUrl;
+        });
+    </script>
+</body>
+</html>
