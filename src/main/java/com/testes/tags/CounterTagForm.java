@@ -1,6 +1,6 @@
 package com.testes.tags;
 
-public class TagForm {
+public class CounterTagForm {
     private String urls;
 
     public String getUrls() {

@@ -2,14 +2,14 @@ package com.testes.tags;
 
 import java.util.Map;
 
-public class TagDTO {
+public class CounterTagDTO {
     private String url;
     private Map<String, Integer> tagCountMap;
 
-    public TagDTO() {
+    public CounterTagDTO() {
     }
 
-    public TagDTO(String url, Map<String, Integer> tagCountMap) {
+    public CounterTagDTO(String url, Map<String, Integer> tagCountMap) {
         this.url = url;
         this.tagCountMap = tagCountMap;
     }

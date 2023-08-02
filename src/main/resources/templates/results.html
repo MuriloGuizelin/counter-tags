@@ -1,16 +1,73 @@
-<!-- results.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Resultados da Contagem de Tags HTML</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .url-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .url-box {
+            flex: 1 1 300px; /* Largura mínima e máxima da caixa da URL */
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #dddddd;
+        }
+
+        .url-column {
+            font-weight: bold;
+        }
+
+        .tag-table {
+            border-collapse: collapse;
+            table-layout: auto;
+            width: 100%;
+        }
+
+        .tag-table th, .tag-table td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .tag-table th {
+            background-color: #00BFFF;
+        }
+        .author-text {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .author-link {
+            font-size: 14px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .author-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Resultados da Contagem de Tags HTML</h1>
-    <div class="results-container">
-        <div class="results" th:each="result : ${results}">
-            <h2 class="url"> <span id="formattedUrl" th:text="${result.url}"></span></h2>
-            <table class="small-table">
+    <div class="url-container">
+        <div th:each="result : ${results}" class="url-box">
+            <div class="url-column">URL: <span th:text="${result.url}"></span></div>
+            <table class="tag-table">
                 <thead>
                     <tr>
                         <th>Tag</th>
@@ -26,15 +83,7 @@
             </table>
         </div>
     </div>
-    
-    <script>
-        // Remove o "https://www." da URL antes de exibir
-        const formattedUrlElements = document.querySelectorAll(".url #formattedUrl");
-        formattedUrlElements.forEach((element) => {
-            const url = element.textContent;
-            const formattedUrl = url.replace(/^https?:\/\/(www\.)?/, "");
-            element.textContent = formattedUrl;
-        });
-    </script>
+    <p>Desenvolvido por <a href="https://www.linkedin.com/in/muriloguizelin/"> Murilo Guizelin</a></p>
+</body>
 </body>
 </html>

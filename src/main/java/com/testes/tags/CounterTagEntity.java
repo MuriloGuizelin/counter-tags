@@ -12,6 +12,8 @@ public class CounterTagEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String url;
+
     private String tagName;
 
     private int tagCount;
@@ -19,7 +21,8 @@ public class CounterTagEntity {
     public CounterTagEntity() {
     }
 
-    public CounterTagEntity(String tagName, int tagCount) {
+    public CounterTagEntity(String url, String tagName, int tagCount) {
+        this.url = url;
         this.tagName = tagName;
         this.tagCount = tagCount;
     }
@@ -30,6 +33,14 @@ public class CounterTagEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getTagName() {

@@ -1,26 +1,98 @@
-<!-- index.html -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Contagem de Tags HTML</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+<style>
+
+    .author-text {
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .author-link {
+        font-size: 14px;
+        color: #0066cc;
+        text-decoration: none;
+    }
+
+    .author-link:hover {
+        text-decoration: underline;
+    }
+    form {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+    
+    input[type="text"] {
+        width: 400px;
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .results {
+        margin-top: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+    
+    textarea {
+        width: 400px;
+        height: 50px;
+        resize: none;
+        padding: 5px;
+        margin: 5px;
+    }
+</style>
 <body>
     <h1>Contagem de Tags HTML</h1>
     <form action="#" th:action="@{/countTags}" th:object="${urlsForm}" method="post">
-        <label for="urls">Insira as URLs (separadas por vírgula):</label>
+        <label for="urls">Insira as URLs (uma url por linha e, deve conter http:// ou https://):</label>
         <br/>
         <textarea id="urls" name="urls" th:field="*{urls}" required></textarea>
         <br/>
         <button type="submit">Contar Tags</button>
     </form>
     <script>
-        // Redimensionar o textarea dinamicamente conforme o texto é digitado
         const textarea = document.getElementById('urls');
         textarea.addEventListener('input', () => {
             textarea.style.height = 'auto';
             textarea.style.height = textarea.scrollHeight + 'px';
         });
     </script>
+    <p>Desenvolvido por <a href="https://www.linkedin.com/in/muriloguizelin/"> Murilo Guizelin</a></p>
 </body>
 </html>
